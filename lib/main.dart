@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'transaction.dart';
+import 'models/transaction.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
