@@ -7,10 +7,10 @@ class Transaction {
   DateTime date;
 
   Transaction({ 
-    @required this.id, // @required means that the id is required
-     @required this.title,
-      @required this.amount,
-      @required this.date
+    required this.id, // @required means that the id is required
+     required this.title,
+      required this.amount,
+      required this.date
       });
 
   Map<String, dynamic> toMap() {
