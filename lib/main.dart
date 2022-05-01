@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:my_project_name/widgets/newTransAction.dart';
-import 'package:my_project_name/widgets/transActionList.dart';
+
+import './widgets/user_transactions.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,44 +10,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Expense Tracker',
+      title: 'Flutter App',
       home: MyHomePage(),
     );
   }
 }
 
-
 class MyHomePage extends StatelessWidget {
-  
-
-  
-  final titleController = TextEditingController(); //  text editing controller is a function that allows us to edit the text in the text field
+  // String titleInput;
+  // String amountInput;
+  final titleController = TextEditingController();
   final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Flutter App',
-          textAlign: TextAlign.center,
-        ),
+        title: Text('Flutter App'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: double.infinity, // means full width of the screen (100%)
-            child: Card(
-              color: Colors.blue[300],
-              child: Text('CHART!'),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('CHART!'),
+                elevation: 5,
+              ),
             ),
-          ),
-        
-           NewTransaction(),
-          TransactionList() // this function is defined in the transactionList.dart file as a list of transactions
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }

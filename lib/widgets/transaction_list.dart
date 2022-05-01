@@ -1,35 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatefulWidget {
-  const TransactionList({Key? key}) : super(key: key);
+import '../models/transaction.dart';
 
-  @override
-  State<TransactionList> createState() => _TransactionListState();
-}
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions; // list of transactions is   passed in as a parameter to the constructor of TransactionList class 
 
-class _TransactionListState extends State<TransactionList> {
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    ),
-  ];
+  TransactionList(this.transactions);  // constructor of TransactionList class 
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: _userTransactions.map((tx) {
+      children: transactions.map((tx) {
         return Card(
           child: Row(
             children: <Widget>[
