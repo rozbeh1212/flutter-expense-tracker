@@ -12,11 +12,11 @@ class TransactionList extends StatelessWidget {
   TransactionList(this.transactions); // constructor of TransactionList class
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return Container(
       height: 300,
       child: ListView.builder(
-        itemBuilder: (ctx, index) {
+        itemBuilder: (ctx, index) { // ctx is the context of the widget  , index is the index of the item in the list of transactions 
           return Card(
             child: Row(
               children: <Widget>[
@@ -33,7 +33,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    '\$${transactions[index].amount}',
+                    '\$${transactions[index].amount.toStringAsFixed(2)}', // toStringAsFixed(2) is used to display the amount in 2 decimal places
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
