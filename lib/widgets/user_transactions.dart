@@ -6,7 +6,7 @@ import '../models/transaction.dart';
 
 class UserTransactions extends StatefulWidget {
   @override
-  _UserTransactionsState createState() => _UserTransactionsState();
+  _UserTransactionsState createState() => _UserTransactionsState(); // createState() is a method that returns a new instance of the _UserTransactionsState class for creating a new state object
 }
 
 class _UserTransactionsState extends State<UserTransactions> {
@@ -26,7 +26,7 @@ class _UserTransactionsState extends State<UserTransactions> {
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
-    final newTx = Transaction(
+    final newTx = Transaction( // create a new instance of Transaction  to update the list of transactions
       title: txTitle,
       amount: txAmount,
       date: DateTime.now(),
