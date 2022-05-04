@@ -12,15 +12,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter ',
+      title: 'Expenses ',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+       colorScheme: ColorScheme(
+         primary: Colors.purple,
+         error: Colors.red,
+         surface: Colors.white,
+         onSurface: Colors.black,
+         brightness: Brightness.dark,
+       ),
+        ),
       home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget { // StatefulWidget is a widget that can be changed 
+class MyHomePage extends StatefulWidget {
+  // StatefulWidget is a widget that can be changed
   @override
-  State<MyHomePage> createState() => _MyHomePageState(); 
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -56,22 +67,25 @@ class _MyHomePageState extends State<MyHomePage> {
           newTx); // add new transaction to the list of transactions as a new element
     });
   }
-  void _strartAddNewTransAction(BuildContext ctx) { 
-   showModalBottomSheet(context: ctx, builder: (_) {
-      return GestureDetector(
-        onTap: () {},
-        child: NewTransaction(_addNewTransaction),
-        behavior: HitTestBehavior.opaque,
-      );
-    });
-}
+
+  void _strartAddNewTransAction(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return GestureDetector(
+            onTap: () {},
+            child: NewTransaction(_addNewTransaction),
+            behavior: HitTestBehavior.opaque,
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(' App'),
-        actions: <Widget> [
+        title: Text(' Expenses'),
+        actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _strartAddNewTransAction(context),
@@ -90,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 5,
               ),
             ),
-             TransactionList(_userTransactions),
+            TransactionList(_userTransactions),
           ],
         ),
       ),
