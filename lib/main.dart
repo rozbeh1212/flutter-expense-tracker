@@ -22,6 +22,15 @@ class MyApp extends StatelessWidget {
          onSurface: Colors.black,
          brightness: Brightness.dark,
        ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ),
       home: MyHomePage(),
     );
@@ -84,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(' Expenses'),
+        title: Text(' Expenses', style: TextStyle(fontFamily: 'OpenSans'),),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
