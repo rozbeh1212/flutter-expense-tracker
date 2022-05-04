@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget { // StatefulWidget is a widget that can be changed 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState(); 
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
           newTx); // add new transaction to the list of transactions as a new element
     });
   }
-void _strartAddNewTransAction(BuildContext ctx) {
+  void _strartAddNewTransAction(BuildContext ctx) { 
    showModalBottomSheet(context: ctx, builder: (_) {
       return GestureDetector(
         onTap: () {},
@@ -80,7 +80,6 @@ void _strartAddNewTransAction(BuildContext ctx) {
       ),
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
