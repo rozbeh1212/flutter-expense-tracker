@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../models/transaction.dart';
 import 'chart_bar.dart';
 
@@ -14,8 +13,7 @@ class Chart extends StatelessWidget {
     // ignore: missing_return
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(
-          days:
-              index)); // subtract is a function that takes a duration and subtracts it from a date
+          days: index)); // subtract is a function that takes a duration and subtracts it from a date
 
       double totalSum;
       for (var i = 0; i < recentTransactions.length; i++) {
@@ -28,14 +26,15 @@ class Chart extends StatelessWidget {
       }
 
       return {
-        'day': DateFormat.E().format(weekDay).substring(0, 1), // format the date by substringing the first letter of the day of the week and return it as a string 
-        'amount': totalSum,                                     
+        'day': DateFormat.E().format(weekDay).substring(0, 1), // format the date by substringing the first letter of the day of the week and return it as a string
+        'amount': totalSum,
       };
     });
   }
 
   double get totalSpending {
-    return groupTransactionValues.fold(0.0, (sum, item) { // fold is a function that takes a starting value and a function as an argument and returns a value
+    return groupTransactionValues.fold(0.0, (sum, item) {
+      // fold is a function that takes a starting value and a function as an argument and returns a value
       return sum + item['amount'];
     });
   }
@@ -45,17 +44,24 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 5,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children:  groupTransactionValues.map((data){
-          return ChartBar(
-            data['day'],
-            data['amount'],
-            totalSpending == 0.0
-                ? 0.0
-                : (data['amount'] as double) / totalSpending,
-          );
-          
-        }).toList(),
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupTransactionValues.map((data) {
+            return Flexible(
+              // Flexible is a widget that takes a widget as an argument and returns a widget that can be stretched or compressed
+              fit: FlexFit.tight,
+              child: ChartBar(
+                data['day'],
+                data['amount'],
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

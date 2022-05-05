@@ -16,23 +16,23 @@ class MyApp extends StatelessWidget {
       title: 'Expenses ',
       theme: ThemeData(
         primarySwatch: Colors.purple,
-       colorScheme: ColorScheme(
-         primary: Colors.purple,
-         error: Colors.red,
-         surface: Colors.white,
-         onSurface: Colors.black,
-         brightness: Brightness.dark,
-       ),
-          appBarTheme: AppBarTheme(
-            textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+        colorScheme: ColorScheme(
+          primary: Colors.purple,
+          error: Colors.red,
+          surface: Colors.white,
+          onSurface: Colors.black,
+          brightness: Brightness.dark,
         ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -63,17 +63,17 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
-    
   List<Transaction> get _recentTransactions {
-    return _userTransactions.where((tx) { // where is a function that takes a function as an argument and returns a list of transactions that satisfy the function
-      return tx.date.isAfter( // isAfter is a function that takes a date and returns a boolean value if the date is after the current date or not (true or false)
+    return _userTransactions.where((tx) {
+      // where is a function that takes a function as an argument and returns a list of transactions that satisfy the function
+      return tx.date.isAfter(
+        // isAfter is a function that takes a date and returns a boolean value if the date is after the current date or not (true or false)
         DateTime.now().subtract(
           Duration(days: 7),
         ),
       );
-    }).toList();  // toList is a function that returns a list of transactions 
+    }).toList(); // toList is a function that returns a list of transactions
   }
-
 
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -106,7 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(' Expenses', style: TextStyle(fontFamily: 'OpenSans'),),
+        title: Text(
+          ' Expenses',
+          style: TextStyle(fontFamily: 'OpenSans'),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -118,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-         Chart( _recentTransactions),
+            Chart(_recentTransactions),
             TransactionList(_userTransactions),
           ],
         ),
