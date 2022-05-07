@@ -6,10 +6,9 @@ import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction>
-      transactions; // list of transactions is   passed in as a parameter to the constructor of TransactionList class
-
-  TransactionList(this.transactions); // constructor of TransactionList class
+  final List<Transaction> transactions; // list of transactions is   passed in as a parameter to the constructor of TransactionList class
+  final Function deleteTx; // deleteTransaction is a function that is passed in as a parameter to the constructor of TransactionList class
+  TransactionList(this.transactions, this.deleteTx); // constructor of TransactionList class
 
   @override
   Widget build(BuildContext context) {
@@ -35,32 +34,39 @@ class TransactionList extends StatelessWidget {
               ],
             )
           : ListView.builder(
-              itemBuilder: (ctx, index) {// itemBuilder is a callback that is called once for each item in the list and is passed the context and the index of the item in the list as parameters 
+              itemBuilder: (ctx, index) {
+                // itemBuilder is a callback that is called once for each item in the list and is passed the context and the index of the item in the list as parameters
                 return Card(
                   margin: EdgeInsets.symmetric(
                     vertical: 8,
                     horizontal: 5,
                   ),
-                  child: ListTile( // ListTile is a widget that displays a list of items in a vertical list.
-                      leading: CircleAvatar( // leading is a property of ListTile that displays a small icon or image in the beginning of the list item.
-                    radius: 30,
-                    child: Padding(
-                      padding: EdgeInsets.all(6),
-                      child: FittedBox(
-                        child: Text(
-                          '\$${transactions[index].amount}',
+                  child: ListTile(
+                    // ListTile is a widget that displays a list of items in a vertical list.
+                    leading: CircleAvatar(
+                      // leading is a property of ListTile that displays a small icon or image in the beginning of the list item.
+                      radius: 30,
+                      child: Padding(
+                        padding: EdgeInsets.all(6),
+                        child: FittedBox(
+                          child: Text(
+                            '\$${transactions[index].amount}',
+                          ),
                         ),
                       ),
                     ),
-                  )
-                               ,title: Text(
-                    transactions[index].title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  subtitle: Text(
-                    DateFormat.yMMMd().format(transactions[index].date),
-                  ),
-                  
+                    title: Text(
+                      transactions[index].title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(
+                      DateFormat.yMMMd().format(transactions[index].date),
+                    ),
+                    trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        color: Theme.of(context).errorColor,
+                        onPressed: () => deleteTx(transactions[index].id),
+                        ),
                   ),
                 );
                 // return Card(
